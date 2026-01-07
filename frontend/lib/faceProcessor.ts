@@ -239,7 +239,7 @@ class FaceProcessor {
     }
 
     private preprocessForDetection(imageData: ImageData): { tensor: ort.Tensor, scale: number, offsetX: number, offsetY: number } {
-        const targetSize = 1920; // Correct multiple of 32 for high-res detection
+        const targetSize = 640; // Standard resolution for SCRFD to ensure robust detection
         const { width, height } = imageData;
 
         // Calculate scale to fit within targetSize while maintaining aspect ratio
@@ -337,7 +337,7 @@ class FaceProcessor {
         offsetX: number,
         offsetY: number
     ): FaceDetection[] {
-        const targetSize = 1920; // Must match preprocessForDetection
+        const targetSize = 640; // Must match preprocessForDetection
         const strides = [8, 16, 32];
         const numAnchors = 2; // SCRFD typically uses 2 anchors per scale
 
